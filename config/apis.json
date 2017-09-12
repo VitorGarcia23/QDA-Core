@@ -1,0 +1,38 @@
+{
+	"get-serie": {
+		"url": "http://api.tvmaze.com/singlesearch/shows?q=nome-serie",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["nome-serie"]
+	},
+	"get-seasons": {
+		"url": "http://api.tvmaze.com/shows/id-serie/seasons",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["id-serie"]
+	},
+	"get-episode-by-number": {
+		"url": "http://api.tvmaze.com/shows/id-serie/episodebynumber?season=numero-season&number=numero-episodio",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["numero-season", "numero-episodio"]
+	},
+	"get-crew": {
+		"url": "http://api.tvmaze.com/shows/id-serie/crew",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["id-serie"]
+	},
+	"get-cast": {
+		"url": "http://api.tvmaze.com/shows/id-serie/cast",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["id-serie"]
+	},
+	"get-episode-by-date": {
+		"url": "http://api.tvmaze.com/shows/id-serie/episodesbydate?date=data-pesquisa",
+		"method": "GET",
+		"weight" : 1,
+		"keys": ["data-pesquisa"]
+	}
+}
