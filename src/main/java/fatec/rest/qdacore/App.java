@@ -15,8 +15,9 @@ public class App {
 	@Path("/config")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response config(String config) {
-		boolean result = ConfigWriter.WriteFile(config);
+	public Response config(String jsonText) {
+		String path = "config";
+		boolean result = ConfigWriter.WriteFile(jsonText,path);
 		if(result)
 			return Response.status(200).entity("").build();
 		else
@@ -30,4 +31,5 @@ public class App {
 
 		return Response.status(200).entity("").build();
 	}
+	
 }
