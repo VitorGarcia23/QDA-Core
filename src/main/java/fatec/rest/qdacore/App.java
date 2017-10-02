@@ -7,6 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import fatec.rest.reader.ConfigWriter;
+
 @Path("/")
 public class App {
 
@@ -14,9 +16,11 @@ public class App {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response config(String config) {
-		System.out.println(config);
-		
-		return Response.status(200).entity("").build();
+		boolean result = ConfigWriter.WriteFile(config);
+		if(result)
+			return Response.status(200).entity("").build();
+		else
+			return Response.status(500).entity("").build();
 	}
 
 	@Path("/result")
