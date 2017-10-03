@@ -11,7 +11,7 @@ public class UrlParser {
 
 		for (int i = 0; i < urls.length; i++) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
-				urls[i] = urls[i].toString().replaceAll(entry.getKey(), entry.getValue());
+				urls[i] = urls[i].toString().replaceAll("\\{\\{" + entry.getKey() + "\\}\\}", entry.getValue());
 			}
 		}
 		

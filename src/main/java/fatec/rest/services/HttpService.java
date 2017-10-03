@@ -45,9 +45,10 @@ public abstract class HttpService {
 
 			return obj;
 		} catch (IOException e) {
-			e.printStackTrace();
+			JsonObject obj = new JsonObject();
+			obj.addProperty("error", "Internal Server Error");
+			
+			return obj;
 		}
-
-		return null;
 	}
 }

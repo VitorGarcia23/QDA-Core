@@ -13,16 +13,11 @@ public class ConfigReader {
 	private JsonElement json;
 
 	public ConfigReader(String path) throws IOException {
-		qson = new QSon();
-		json = qson.fileToJson(new FileReader(getFilePath(path.toLowerCase())));
+		this.qson = new QSon();
+		this.json = qson.fileToJson(new FileReader(path));
 	}
 
 	public JsonElement getJson() {
-		return json;
+		return this.json;
 	}
-
-	private String getFilePath(String path) {
-		return String.format("%s/%s", path + "/", "apis.json");
-	}
-
 }

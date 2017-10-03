@@ -2,6 +2,7 @@ package fatec.rest.qdacore;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,9 +17,6 @@ import fatec.rest.reader.Config;
 import fatec.rest.reader.ConfigWriter;
 import fatec.rest.services.HttpService;
 
-import fatec.rest.reader.Config;
-import fatec.rest.reader.ConfigWriter;
-
 @Path("/")
 public class App {
 
@@ -30,9 +28,9 @@ public class App {
 		boolean result = ConfigWriter.WriteFile(jsonText,path);
     
 		if(result)
-			return Response.status(200).entity("").build();
+			return Response.status(201).build();
 		else
-			return Response.status(500).entity("").build();
+			return Response.status(500).build();
 	}
 
 	@Path("/result")
