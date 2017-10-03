@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 public abstract class ConfigWriter {
 
 	public static boolean WriteFile(String fileJson, String path) {
-		path += "/apis.json";
 		try ( PrintWriter writer = new PrintWriter(path, "UTF-8")){
 		    writer.println(fileJson);
 		    return true;
