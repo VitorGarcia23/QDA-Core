@@ -18,11 +18,11 @@ import fatec.rest.reader.ConfigReader;
 @SuppressWarnings("unchecked")
 public abstract class HttpService {
 
-	public static JsonElement proccess(Map<String, String> params) {
+	public static JsonElement proccess(Map<String, String> params, String path) {
 		ConfigReader reader;
 
 		try {
-			reader = new ConfigReader("C:\\Users\\Guilherme Henrique\\eclipse-workspace\\QDA-Core\\config");
+			reader = new ConfigReader(path);
 			Config config = new Config(reader.getJson());
 
 			Map<String, Object> endpoints = (Map<String, Object>) config.get("*", "url");
@@ -38,16 +38,16 @@ public abstract class HttpService {
 			});
 
 			JsonObject obj = qson.merge(elements).getAsJsonObject();
-			
+
 			obj.addProperty("bulkResponse", new Boolean(true));
 			obj.addProperty("providedBy", "QDA Core Service");
 			obj.addProperty("creators", "Guilherme Vasconcellos and Vitor Garcia");
-			
-			return obj;		
+
+			return obj;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 }
