@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.servlet.ServletContext;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
@@ -60,4 +62,7 @@ public class Config {
 		return gson.fromJson(json, ArrayList.class);
 	}
 
+	public static String getFilePath(ServletContext ctx) {
+		return  ctx.getRealPath("") + "/apis.json";
+	}
 }
