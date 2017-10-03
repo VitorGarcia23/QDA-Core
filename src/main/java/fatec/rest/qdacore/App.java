@@ -2,7 +2,6 @@ package fatec.rest.qdacore;
 
 import java.util.Map;
 import java.util.TreeMap;
-
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,18 +16,20 @@ import fatec.rest.reader.Config;
 import fatec.rest.reader.ConfigWriter;
 import fatec.rest.services.HttpService;
 
+import fatec.rest.reader.Config;
+import fatec.rest.reader.ConfigWriter;
+
 @Path("/")
 public class App {
 
 	@Path("/config")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response config(String jsonText, @Context ServletContext ctx) {
-		String path = Config.getFilePath(ctx);
-
-		boolean result = ConfigWriter.WriteFile(jsonText, path);
-
-		if (result)
+	public Response config(String jsonText, @Context ServletContext ctx	) {
+		String path = Config.getFilePath(ctx); 
+		boolean result = ConfigWriter.WriteFile(jsonText,path);
+    
+		if(result)
 			return Response.status(200).entity("").build();
 		else
 			return Response.status(500).entity("").build();
