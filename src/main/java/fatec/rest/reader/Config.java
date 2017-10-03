@@ -63,6 +63,6 @@ public class Config {
 	}
 
 	public static String getFilePath(ServletContext ctx) {
-		return  ctx.getRealPath("") + "/apis.json";
+		return ctx.getRealPath("") + "/apis.json";
 	}
 }
