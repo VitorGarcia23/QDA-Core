@@ -17,10 +17,6 @@ public class UrlParser {
 			}
 		}
 
-		for (int i = 0; i < urls.length; i++) {
-			System.out.println(urls[i]);
-		}
-
 		String regex = ".*\\{\\{(.*)\\}\\}.*";
 		int i = 0;
 
