@@ -32,7 +32,7 @@ public abstract class HttpHelper {
 	private static int getResponseCode(HttpURLConnection connection) throws IOException {
 		if (connection != null)
 			return connection.getResponseCode();
-		throw new RuntimeException("Error on get responde status.");
+		throw new RuntimeException("Error on get response status.");
 	}
 
 	private static HttpURLConnection openConnection(URL url, HttpURLConnection connection) throws IOException {

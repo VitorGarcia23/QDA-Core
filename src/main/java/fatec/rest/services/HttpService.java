@@ -51,10 +51,7 @@ public abstract class HttpService {
 			obj = new JsonObject();
 		}
 
-		if (!errors.isJsonNull()) {
-			obj.add("requestErrors", errors);
-		}
-
+		obj.add("requestErrors", errors);
 		obj.addProperty("bulkResponse", new Boolean(errors.size() == 0));
 		obj.addProperty("providedBy", "QDA Core Service");
 		obj.addProperty("creators", "Guilherme Vasconcellos and Vitor Garcia");
