@@ -9,37 +9,39 @@ import java.net.URL;
 
 public abstract class HttpHelper {
 
-	public static String get(String urlName) {
+	public static String get(String urlName) throws IOException {
 		String jsonResponse = "";
 		HttpURLConnection connection = null;
-		try {
-			URL url = createURL(urlName);
-			connection = openConnection(url, connection);
-			int responseCode = getResponseCode(connection);
-			jsonResponse = readResponse(responseCode, connection);
-		} catch (IOException | RuntimeException exc) {
-			jsonResponse = exc.getMessage();
-		}
+
+		URL url = createURL(urlName);
+
+		connection = openConnection(url, connection);
+		int responseCode = getResponseCode(connection);
+		jsonResponse = readResponse(responseCode, connection);
+
 		return jsonResponse;
 	}
 
 	private static URL createURL(String urlName) throws MalformedURLException {
 		if (urlName != null && !urlName.equals(""))
 			return new URL(urlName);
-		throw new RuntimeException("Url invalida");
+
+		throw new RuntimeException("Invalid Url.");
 	}
 
 	private static int getResponseCode(HttpURLConnection connection) throws IOException {
 		if (connection != null)
 			return connection.getResponseCode();
-		throw new RuntimeException("Nao e possivel retornar o status de uma requisicao sem abrir uma coneccao");
+		throw new RuntimeException("Error on get response status.");
 	}
 
 	private static HttpURLConnection openConnection(URL url, HttpURLConnection connection) throws IOException {
 		connection = (HttpURLConnection) url.openConnection();
+
 		connection.setRequestMethod("GET");
 		connection.setRequestProperty("Content-type", "application/json");
 		connection.setDoOutput(true);
+
 		return connection;
 	}
 
@@ -57,6 +59,7 @@ public abstract class HttpHelper {
 
 			return response.toString();
 		}
-		throw new RuntimeException("Occorreu um erro ao fazer a requisicao \nStatus Code : " + responseCode);
+
+		throw new RuntimeException("Some errors occurred. \nStatus Code : " + responseCode);
 	}
 }
