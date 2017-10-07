@@ -60,6 +60,6 @@ public abstract class HttpHelper {
 			return response.toString();
 		}
 
-		throw new RuntimeException("Some errors occurred. \nStatus Code : " + responseCode);
+		throw new IOException("Some errors occurred. Status Code : " + responseCode);
 	}
 }
