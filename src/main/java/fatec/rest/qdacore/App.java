@@ -1,5 +1,6 @@
 package fatec.rest.qdacore;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -60,8 +61,18 @@ public class App {
 			params.put(key, value.get(value.size() - 1));
 		});
 
-		String json = HttpService.proccess(params, path).toString();
+		String json;
+		int status;
+		
+		try {
+			json = HttpService.proccess(params, path).toString();
+			status = 200;
+		} catch (IOException e) {
+			json = String.format("{ \"error\": \"%s\"}", e.getMessage());
+			status = 400;
+		}
+		
+		return Response.status(status).entity(json).build();
 
-		return Response.status(200).entity(json).build();
 	}
 }

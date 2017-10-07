@@ -1,5 +1,6 @@
 package fatec.rest.reader;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,8 +14,14 @@ public class ConfigReader {
 	private JsonElement json;
 
 	public ConfigReader(String path) throws IOException {
-		this.qson = new QSon();
-		this.json = qson.fileToJson(new FileReader(path));
+		File file = new File(path);
+		
+		if (file.exists()) {			
+			this.qson = new QSon();
+			this.json = qson.fileToJson(new FileReader(path));
+		} else {
+			throw new IOException("Config file not found.");
+		}
 	}
 
 	public JsonElement getJson() {
