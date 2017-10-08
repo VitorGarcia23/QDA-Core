@@ -46,7 +46,7 @@ public abstract class HttpHelper {
 	}
 
 	private static String readResponse(int responseCode, HttpURLConnection connection) throws IOException {
-		if (responseCode == 200) {
+		if (responseCode >= 200 && responseCode < 300) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String inputLine;
 			StringBuffer response = new StringBuffer();
