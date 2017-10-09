@@ -28,6 +28,11 @@ public class App {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response config(String jsonText, @Context ServletContext ctx) {
+		
+		if(!ConfigWriter.VerifyPath(jsonText)) {
+			return Response.status(400).entity("{ \"error\": \"400 - Bad Request.\" }").build();
+		}
+		
 		String path = Config.getFilePath(ctx);
 		boolean result = ConfigWriter.WriteFile(jsonText, path);
 
