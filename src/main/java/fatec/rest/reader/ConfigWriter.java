@@ -16,4 +16,11 @@ public abstract class ConfigWriter {
 			return false;
 		}
 	}
+	
+	public static boolean VerifyPath(String jsonText) {
+		if(jsonText == null || jsonText.equals("")) {
+			return false;
+		}
+		return true;
+	}
 }
