@@ -41,6 +41,8 @@ public class Config {
 			return getAsList(json);
 		}
 
+		json = gson.toJsonTree(child);
+
 		return getAsMap(config.get(parent)).get(child);
 	}
 

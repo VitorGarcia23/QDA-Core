@@ -10,23 +10,27 @@ public class UrlParser {
 		Map<String, Object> parsed = new TreeMap<String, Object>();
 
 		String pattern = "\\{\\{%s\\}\\}";
-		
-		for (int i = 0; i < urls.length; i++) {			
-			for (Map.Entry<String, String> entry : params.entrySet()) {
-				urls[i] = urls[i].toString().replaceAll(String.format(pattern, entry.getKey()), entry.getValue());
+
+		try {
+			for (int i = 0; i < urls.length; i++) {
+				for (Map.Entry<String, String> entry : params.entrySet()) {
+					urls[i] = urls[i].toString().replaceAll(String.format(pattern, entry.getKey()), entry.getValue());
+				}
 			}
+
+			String regex = ".*\\{\\{(.*)\\}\\}.*";
+			int i = 0;
+
+			for (Map.Entry<String, Object> entry : endpoints.entrySet()) {
+				if (!urls[i].toString().matches(regex)) {
+					parsed.put(entry.getKey(), urls[i]);
+				}
+				i++;
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 
-		String regex = ".*\\{\\{(.*)\\}\\}.*";
-		int i = 0;
-
-		for (Map.Entry<String, Object> entry : endpoints.entrySet()) {
-			if (!urls[i].toString().matches(regex)) {
-				parsed.put(entry.getKey(), urls[i]);				
-			}
-			i++;
-		}
-		
 		return parsed;
 	}
 }
